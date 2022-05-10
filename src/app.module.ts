@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { CompanyModule } from "./company/company.module";
+import { CompanyModule } from "@company/company.module";
 
 @Module({
   imports: [
@@ -11,6 +11,7 @@ import { CompanyModule } from "./company/company.module";
       type: "sqlite",
       database: "typeorm-db.sql",
       entities: [__dirname + "/**/*entity{.ts,.js}"],
+      keepConnectionAlive: true,
       synchronize: !!process.env.HMR,
     }),
   ],
